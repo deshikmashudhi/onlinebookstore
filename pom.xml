@@ -42,13 +42,8 @@
   </build>
 
   <dependencies>
-    <!-- MongoDB Java Driver -->
-    <dependency>
-      <groupId>org.mongodb</groupId>
-      <artifactId>mongodb-driver-sync</artifactId>
-      <version>4.5.0</version> <!-- Make sure to use the latest version -->
-    </dependency>
-
+    <!-- Removed MongoDB dependency -->
+    
     <!-- Existing dependencies -->
     <dependency>
       <groupId>javax.servlet</groupId>
