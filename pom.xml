@@ -1,9 +1,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+
   <groupId>onlinebookstore</groupId>
   <artifactId>onlinebookstore</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.1-SNAPSHOT</version> <!-- Updated version to SNAPSHOT -->
   <packaging>war</packaging>
+
+  <properties>
+    <sonar.host.url>http://50.19.41.251:9000/</sonar.host.url>
+    <sonar.projectKey>onlinebookstore</sonar.projectKey>
+    <sonar.projectName>Online Bookstore</sonar.projectName>
+    <sonar.login>squ_de2e727cfcc587f7d5898a20cb27895cb2b19af7</sonar.login>
+  </properties>
+
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
@@ -15,6 +24,7 @@
           <target>1.7</target>
         </configuration>
       </plugin>
+
       <plugin>
         <artifactId>maven-war-plugin</artifactId>
         <version>3.2.1</version>
@@ -22,28 +32,55 @@
           <warSourceDirectory>WebContent</warSourceDirectory>
         </configuration>
       </plugin>
+
+      <plugin>
+        <groupId>org.sonarsource.scanner.maven</groupId>
+        <artifactId>sonar-maven-plugin</artifactId>
+        <version>3.9.0.2155</version>
+      </plugin>
     </plugins>
   </build>
+
   <dependencies>
-  	
-  	<dependency>
-  		<groupId>org.postgresql</groupId>
-  		<artifactId>postgresql</artifactId>
-  		<version>42.3.3</version>
-  	</dependency>
-  	
-  	
-	<dependency>
-	    <groupId>mysql</groupId>
-	    <artifactId>mysql-connector-java</artifactId>
-	    <version>8.0.16</version>
-	</dependency>
-  	
-  
-  	<dependency>
-  		<groupId>javax.servlet</groupId>
-  		<artifactId>javax.servlet-api</artifactId>
-  		<version>3.1.0</version>
-  	</dependency>
+    <!-- MongoDB Java Driver -->
+    <dependency>
+      <groupId>org.mongodb</groupId>
+      <artifactId>mongodb-driver-sync</artifactId>
+      <version>4.5.0</version> <!-- Make sure to use the latest version -->
+    </dependency>
+
+    <!-- Existing dependencies -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.1.0</version>
+    </dependency>
+
+    <!-- Optional: Keep MySQL/PostgreSQL dependencies if needed in future -->
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>42.3.3</version>
+    </dependency>
+
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.16</version>
+    </dependency>
   </dependencies>
+
+  <distributionManagement>
+    <repository>
+      <id>nexus</id>
+      <name>Nexus Releases</name>
+      <url>http://54.82.5.75:8081/repository/online-release/</url>
+    </repository>
+
+    <snapshotRepository>
+      <id>nexus</id>
+      <name>Nexus Snapshots</name>
+      <url>http://54.82.5.75:8081/repository/online-snapshot/</url>
+    </snapshotRepository>
+  </distributionManagement>
 </project>
